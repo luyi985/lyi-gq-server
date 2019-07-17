@@ -14,7 +14,7 @@ class RedisMod {
         console.log('Something went wrong ' + err);
     }
 
-    set = (key,value) => {
+    set = (key,value, errCb) => {
         try {
             if(!key) {
                 throw new Error('redis set, key cann not be empty')
@@ -25,10 +25,13 @@ class RedisMod {
             this.client.set(key, value, print);
         } catch(e) {
             this.onError(e);
+            if(errCb) {
+                errCb(e)
+            }
         }
     }
 
-    get(key) {
+    get(key, errCb) {
         try {
             if(!key) {
                 throw new Error('redis get, key cann not be empty')
@@ -46,6 +49,9 @@ class RedisMod {
             })
         }catch(e) {
             this.onError(e);
+            if(errCb) {
+                errCb(e)
+            }
         }
     }
 }
