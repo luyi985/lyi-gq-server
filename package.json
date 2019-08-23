@@ -7,25 +7,29 @@
   "author": "Yi Lu <luyi985@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "test": "jest",
     "redis-server": "docker run -p 6379:6379 --name lyi-redis-server --rm redis:5.0.5-alpine",
     "build:dev": "NODE_ENV=dev && webpack --config webpack.${NODE_ENV}.js",
     "build": "NODE_ENV=prod && webpack --config webpack.${NODE_ENV}.js",
-    "start": "node dist/server.js",
+    "start": "node dist/main.js",
     "dev": "nodemon"
   },
   "dependencies": {
+    "@types/dotenv": "^6.1.1",
     "apollo-server": "^2.8.2",
+    "axios": "^0.19.0",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "graphql": "^14.4.2",
-    "redis": "^2.8.0",
-    "@types/dotenv": "^6.1.1",
-    "dotenv": "^8.1.0"
+    "redis": "^2.8.0"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.18",
     "@types/webpack-env": "^1.14.0",
     "clean-webpack-plugin": "^3.0.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
+    "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
     "webpack": "^4.38.0",

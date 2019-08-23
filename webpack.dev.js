@@ -17,4 +17,7 @@ module.exports = merge.smart(common, {
 	mode: 'development',
 	plugins: [new CleanWebpackPlugin(), new webpack.HotModuleReplacementPlugin()],
 	watch: false,
+	watchOptions: {
+		ignored: ['/node_modules/', 'src/**/*.test.ts', 'src/**/*.spec.ts'],
+	},
 });

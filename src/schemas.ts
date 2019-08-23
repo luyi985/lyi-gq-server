@@ -5,6 +5,6 @@ export default gql`
 		"""
 		Test Message.
 		"""
-		testMessage: String!
+		heartbeat: String!
 	}
 `;
