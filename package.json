@@ -7,7 +7,7 @@
   "author": "Yi Lu <luyi985@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
     "redis-server": "docker run -p 6379:6379 --name lyi-redis-server --rm redis:5.0.5-alpine",
     "build:dev": "NODE_ENV=dev && webpack --config webpack.${NODE_ENV}.js",
     "build": "NODE_ENV=prod && webpack --config webpack.${NODE_ENV}.js",
