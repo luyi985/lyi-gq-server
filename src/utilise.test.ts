@@ -1,4 +1,4 @@
-import { range } from './utilise';
+import { range, multiKWMatch } from './utilise';
 
 describe('utilise', () => {
 	it('range function', () => {
@@ -9,5 +9,27 @@ describe('utilise', () => {
 			expect(n).toBeGreaterThanOrEqual(min);
 			expect(n).toBeLessThanOrEqual(max);
 		}
+	});
+});
+
+describe('multiKWMatch', () => {
+	it('false if q is empty', () => {
+		expect(multiKWMatch('', 'abc')).toBeFalsy();
+	});
+
+	it('false if toMatch is empty', () => {
+		expect(multiKWMatch('aaa', '')).toBeFalsy();
+	});
+
+	it('true if single kw match', () => {
+		expect(multiKWMatch('apple', `I love Apple`)).toBeTruthy();
+	});
+
+	it('true if multi kw match', () => {
+		expect(multiKWMatch('apple, love', `I love Apple`)).toBeTruthy();
+	});
+
+	it('false if not all match', () => {
+		expect(multiKWMatch('aPPle, loves', `I love apple`)).toBeFalsy();
 	});
 });
