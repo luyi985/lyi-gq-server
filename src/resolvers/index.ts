@@ -1,14 +1,16 @@
-import tags from './Tags';
-import customers from './Customers';
-import orders from './Orders';
-import products from './Products';
+import { tagsQuery } from './Tags';
+import { customersQuery } from './Customers';
+import { ordersQuery } from './Orders';
+import { productsQuery } from './Products';
+import { postsQuery } from './Posts';
 
 export default {
 	Query: {
 		heartbeat: (): string => 'alive',
-		tags,
-		customers,
-		orders,
-		products,
+		...tagsQuery,
+		...customersQuery,
+		...ordersQuery,
+		...productsQuery,
+		...postsQuery,
 	},
 };

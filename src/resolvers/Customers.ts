@@ -1,9 +1,15 @@
 import { ICustomer, ICustomers } from '../types';
 import uuid from 'uuid';
 import { getCustomers } from '../fake';
+import { itemFilter } from '../utilise';
 
-export default () => {
-	//console.log(parents, args, context, info);
-	const items = getCustomers(10);
-	return { items };
+const queryCustomers = (root: any, args: any, context: any) => {
+	console.log({ root, args, context });
+	const items = itemFilter(args, getCustomers(1000));
+	const total = items.length;
+	return { items, total };
+};
+
+export const customersQuery = {
+	customers: queryCustomers,
 };

@@ -1,16 +1,22 @@
 import faker from 'faker';
 import uuid from 'uuid';
-import { ICustomer, IOrder, IOrderItem, IProductItem, ITag } from '../types';
+import { ICustomer, IOrder, IOrderItem, IProductItem, ITag, IPost } from '../types';
+
+export const postBase = (): IPost => ({
+	id: uuid.v1(),
+	author: `${faker.name.firstName()} ${faker.name.lastName()}`,
+	comment: faker.lorem.lines(2),
+});
 
 const tagMaker = (value: string, label?: string): ITag => ({
-	tid: uuid.v4(),
+	id: uuid.v4(),
 	label: label || value,
 	value,
 });
-const tagBase = () => tagMaker(faker.commerce.productMaterial());
+export const tagBase = () => tagMaker(faker.commerce.productMaterial());
 
-const customerBase = (): ICustomer => ({
-	cid: uuid.v4(),
+export const customerBase = (): ICustomer => ({
+	id: uuid.v4(),
 	name: `${faker.name.firstName()} ${faker.name.lastName()}`,
 	email: faker.internet.email(),
 	mobile: faker.phone.phoneNumber(),
@@ -21,7 +27,7 @@ const customerBase = (): ICustomer => ({
 });
 
 const orderItemBase = (): IOrderItem => ({
-	pid: uuid.v4(),
+	id: uuid.v4(),
 	name: faker.commerce.productName(),
 	internalPrice: faker.commerce.price(2, 100),
 	salePrice: faker.commerce.price(100, 200),
@@ -31,8 +37,8 @@ const orderItemBase = (): IOrderItem => ({
 	quantity: faker.random.number({ min: 1, max: 100 }),
 });
 
-const orderBase = (): IOrder => ({
-	oid: uuid.v4(),
+export const orderBase = (): IOrder => ({
+	id: uuid.v4(),
 	orderTime: faker.date.recent().toUTCString(),
 	deliverTime: faker.date.future().toUTCString(),
 	customers: [customerBase()],
@@ -41,8 +47,8 @@ const orderBase = (): IOrder => ({
 	tags: [tagBase(), tagBase()],
 });
 
-const productBase = (): IProductItem => ({
-	pid: uuid.v4(),
+export const productBase = (): IProductItem => ({
+	id: uuid.v4(),
 	name: faker.commerce.productName(),
 	internalPrice: faker.commerce.price(2, 100),
 	salePrice: faker.commerce.price(100, 200),
@@ -70,3 +76,8 @@ export const getCustomers = (n: number) =>
 	Array(n)
 		.fill(null)
 		.map(i => customerBase());
+
+export const getPosts = (n: number) =>
+	Array(n)
+		.fill(null)
+		.map(i => postBase());
