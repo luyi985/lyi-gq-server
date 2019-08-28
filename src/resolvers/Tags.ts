@@ -1,9 +1,14 @@
 import { ITag, ITags } from '../types';
 import uuid from 'uuid';
 import { getTags } from '../fake';
+import { itemFilter } from '../utilise';
+const queryTags = (root: any, args: any, context: any) => {
+	console.log({ root, args, context });
+	const items = itemFilter(args, getTags(1000));
+	const total = items.length;
+	return { items, total };
+};
 
-export default () => {
-	const items = getTags(10);
-	//console.log(parents, args, context, info);
-	return { items };
+export const tagsQuery = {
+	tags: queryTags,
 };

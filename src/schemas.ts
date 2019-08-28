@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server';
 
 const ProductItemBase = `
-	pid: ID!
+	id: ID!
 	name: String!
 	internalPrice: Float!
 	salePrice: Float!
@@ -11,12 +11,19 @@ const ProductItemBase = `
 `;
 
 export default gql`
+
+    type Post {
+		id: ID!
+    	author: String
+    	comment: String
+  	}
+	  
 	input InputArgs {
-		query: String
+		q: String
 	}
 
 	type Tag {
-		tid: ID!
+		id: ID!
 		label: String!
 		value: String!
 	}
@@ -31,7 +38,7 @@ export default gql`
 	}
 
 	type Order {
-		oid: ID!
+		id: ID!
 		orderTime: String!
 		deliverTime: String!
 		hasDelivered: Boolean!
@@ -51,25 +58,43 @@ export default gql`
 	}
 	type Orders {
 		items: [Order!]!
+		total: Int!
 	}
 
 	type Customers {
 		items: [Customer!]!
+		total: Int!
 	}
 
 	type Tags {
 		items: [Tag!]!
+		total: Int!
 	}
 
 	type Products {
 		items: [ProductItem!]!
+		total: Int!
+	}
+
+	type Posts {
+		items: [Post]!
+		total: Int!
 	}
 
 	type Query {
 		heartbeat: String!
 		customers(args:InputArgs): Customers!
 		orders(args:InputArgs): Orders!
-		tags: Tags!
+		tags(args:InputArgs): Tags!
 		products(args:InputArgs): Products!
+		posts(args:InputArgs): Posts!
 	}
+	
+	type Mutation {
+		addPost(author:String, comment:String):Post
+	}
+
+	type Subscription {
+    	postAdded: Post
+  	}
 `;

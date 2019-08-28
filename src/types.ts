@@ -1,5 +1,8 @@
+export interface IInputArg {
+	q: string;
+}
 export interface IProductItemBase {
-	pid: string;
+	id: string;
 	name: string;
 	internalPrice: number | string;
 	salePrice: number | string;
@@ -8,14 +11,20 @@ export interface IProductItemBase {
 	tags: ITag[];
 }
 
+export interface IPost {
+	id: string;
+	author: string;
+	comment: string;
+}
+
 export interface ITag {
-	tid: string;
+	id: string;
 	label: string;
 	value: string;
 }
 
 export interface ICustomer {
-	cid: string;
+	id: string;
 	name: string;
 	wechat: string;
 	email: string;
@@ -32,7 +41,7 @@ export interface IOrderItem extends IProductItem {
 }
 
 export interface IOrder {
-	oid: string;
+	id: string;
 	orderTime: string;
 	deliverTime: string;
 	hasDelivered: boolean;
@@ -43,16 +52,26 @@ export interface IOrder {
 
 export interface IProducts {
 	items: IProductItem[];
+	total: number;
 }
 
 export interface IOrders {
 	items: IOrder[];
+	total: number;
 }
 
 export interface ITags {
 	items: ITag[];
+	total: number;
 }
 
 export interface ICustomers {
 	items: ICustomer[];
+	total: number;
 }
+
+export interface IPosts {
+	items: IPost[];
+	total: number;
+}
+export type IItem = ICustomer | IPost | IOrder | ITag | IProductItem;
