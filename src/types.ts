@@ -1,5 +1,5 @@
 export interface IInputArg {
-	q: string;
+	args: { q: string };
 }
 export interface IProductItemBase {
 	id: string;

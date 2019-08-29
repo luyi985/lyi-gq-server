@@ -2,7 +2,7 @@ import { tagsQuery } from './Tags';
 import { customersQuery } from './Customers';
 import { ordersQuery } from './Orders';
 import { productsQuery } from './Products';
-import { postsQuery } from './Posts';
+import { postsQuery, postMutation, postSubscription } from './Posts';
 
 export default {
 	Query: {
@@ -12,5 +12,11 @@ export default {
 		...ordersQuery,
 		...productsQuery,
 		...postsQuery,
+	},
+	Mutation: {
+		...postMutation,
+	},
+	Subscription: {
+		...postSubscription,
 	},
 };

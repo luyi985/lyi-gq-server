@@ -22,6 +22,11 @@ export default gql`
 		q: String
 	}
 
+	input InputPostMaker {
+		author:String, 
+		comment:String
+	}
+
 	type Tag {
 		id: ID!
 		label: String!
@@ -91,7 +96,7 @@ export default gql`
 	}
 	
 	type Mutation {
-		addPost(author:String, comment:String):Post
+		addPost(args:InputPostMaker):Post
 	}
 
 	type Subscription {
