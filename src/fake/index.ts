@@ -81,3 +81,11 @@ export const getPosts = (n: number) =>
 	Array(n)
 		.fill(null)
 		.map(i => postBase());
+
+export default {
+	products: getProducts(1000),
+	orders: getOrders(1000),
+	posts: getPosts(1000),
+	tags: getTags(100),
+	customers: getCustomers(1000),
+};

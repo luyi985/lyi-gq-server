@@ -47,7 +47,7 @@ export default gql`
 		tags: [Tag]
 	}
 	type Customer {
-		cid: ID!
+		id: ID!
 		name: String!
 		email: String!
 		mobile: String!
